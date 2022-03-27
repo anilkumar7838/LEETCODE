@@ -1,6 +1,13 @@
-#include<iostream>
-using namespace std;
-int check(char ch){ 
+/*
+ * @lc app=leetcode id=13 lang=cpp
+ *
+ * [13] Roman to Integer
+ */
+
+// @lc code=start
+class Solution {
+public:
+    int val(char ch){
         if(ch=='I'){
             return 1;
         }
@@ -22,23 +29,21 @@ int check(char ch){
         if(ch=='M'){
             return 1000;
         }
-}
-int roman(string str){
+        return 0;
+    }
+    int romanToInt(string s) {
     int prev=0,sum=0;
-    for(int i=str.length()-1;i>=0;i--){
-        int curr=check(str[i]);
-        if(curr>=prev){
-            sum+=curr;
+    for(int i=s.length()-1;i>=0;i--){
+        if(val(s[i])>=prev){
+            sum+=val(s[i]);
         }
         else{
-            sum-=curr;
+            sum-=val(s[i]);
         }
-        prev=curr;
+        prev=val(s[i]);
     }
     return sum;
-}
-int main(){
-string str="CXLIV";
-cout<<roman(str)<<endl;
-return 0;
-}
+    }
+};
+// @lc code=end
+
